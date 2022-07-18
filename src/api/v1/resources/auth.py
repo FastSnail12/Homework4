@@ -53,7 +53,7 @@ async def refresh_token(
         token: str = Depends(JWTRefreshBearer()), user_service: UserService = Depends(get_user_service)
 ) -> UserJwtToken:
     access_token: str = user_service.refresh(token)
-    return UserJwtToken(**{"access_token": access_token, "refresh_token": refresh_token})
+    return UserJwtToken(**{"access_token": access_token, "refresh_token": token})
 
 
 @router.post(
